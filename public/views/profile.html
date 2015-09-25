@@ -1,0 +1,87 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a ui-sref="home" class="navbar-brand">AFTER8</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="about"><i class="fa fa-info">&nbsp; About</i></a></li>
+        <li><a ui-sref="contact"><i class="fa fa-at">&nbsp; Contact</i></a></li>
+        <li><a ui-sref="home"><i class="fa fa-sign-out">&nbsp; Sign-out</i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div style="background: url(&quot;http://wiki-fx.net/wp-content/uploads/2013/08/Black-Background-Collapsar-1080x1920.jpg&quot;) no-repeat center center fixed" class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{coords.latitude}},{{coords.longitude}}&amp;zoom=16&amp;format=png&amp;sensor=false&amp;size=300x200&amp;maptype=roadmap&amp;style=element:geometry.fill|color:0xf4f4f4&amp;markers=color:red|{{coords.latitude}},{{coords.longitude}}&amp;scale=2" alt="" style="border: 5px solid #C14242;" class="map">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-4"></div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+          <ul style="color: #C14242" class="profileName promo1">Welcome home {{username}}     </ul><img ng-src="{{user.cachedUserProfile.userimage}}">
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-4"></div>
+      </div>
+      <div class="row"><br><a href="#/feed" class="btn btn-lg btn-danger">Chat room</a><br>
+        <h2>Let's start the night off!</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12">
+          <h3>Shows, Performances, Events in your area </h3>
+          <div id="carousel-events" style="margin: 30px 30px 30px 30px; border: 5px solid #C14242;" class="carousel">
+            <label class="labelTag">list of Events</label><br>
+            <div class="carousel-inner">
+              <div ng-class="{active:!$index}" ng-repeat="(index, show) in shows" class="item">
+                <div class="col-md-6 col-md-6"><img src="{{show.image[3][&quot;#text&quot;]}}" width="400" height="400" style="border: 5px solid #C14242;"></div>
+                <div class="col-md-6 col-md-6">
+                  <div class="row">
+                    <h3 style="color: #C14242">{{ show.title }}</h3>
+                    <h4>{{ (show.artists.artist).join(', ') }}</h4>
+                    <p>{{ show.startDate }}</p>
+                  </div>
+                  <div class="row">
+                    <h5>{{ show.name }}</h5>
+                    <h5>{{ show.venue.location.city }}</h5>
+                    <h5>{{ show.venue.location.street }}</h5>
+                    <h5>{{ show.venue.location.postalcode }}</h5>
+                  </div>
+                  <div class="row"> <a href="{{show.url}}" class="btn btn-lg btn-success">Get Tickets</a><br></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">               <a ng-click="uber(show)">
+                <div class="button">
+                  <p id="time" style="color: #000;">Get a ride</p><br>
+                </div></a></div><span href="#carousel-events" role="button" data-slide="prev" class="left carousel-control"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></span><span href="#carousel-events" role="button" data-slide="next" class="right carousel-control"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></span>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12">
+          <h3>Hit the Bars, Nightclubs in town tonight </h3>
+          <div id="carousel-clubs" style="margin: 30px 30px 30px 30px; border: 5px solid #C14242;" class="carousel">
+            <label class="labelTag">list of Clubs</label><br>
+            <div class="carousel-inner">
+              <div ng-class="{active:!$index}" ng-repeat="(index, venue) in venues" class="item">
+                <div class="row">
+                  <h3 style="color: #C14242">{{ venue.name }}</h3>
+                  <h4>{{ venue.location.city }}</h4>
+                </div>
+                <div class="row">
+                  <p>{{ venue.categories[0].shortName }}</p>
+                  <h5>{{ (venue.location.formattedAddress).join(', ') }}</h5>
+                  <h5>Foursquare Users checked-in: {{ venue.stats.checkinsCount }}</h5>
+                  <h5>Foursquare Users count: {{ venue.stats.usersCount }}</h5>
+                </div>
+                <div class="row"><a href="{{venue.url}}" class="btn btn-lg btn-success">More infos</a><br></div>
+              </div>
+            </div>
+            <div class="row"><a href="#" ng-click="uber2(venue)">
+                <div class="button">
+                  <p id="time2" style="color: #000;">Get a ride</p><br>
+                </div></a></div><span href="#carousel-clubs" role="button" data-slide="prev" class="left carousel-control"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></span><span href="#carousel-clubs" role="button" data-slide="next" class="right carousel-control"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

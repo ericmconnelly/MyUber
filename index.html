@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<title>Party Invitation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="js/angular-google-maps.min.js"></script>
+    <script src="js/ng-map.min.js"></script>
+
+    <script type="text/javascript" src="app/app.js"></script>
+
+    <script type="text/javascript" src="app/map/map.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js"></script>
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+		
+		<script src="js/uber.js"></script>
+	</head>
+	<body ng-app = "app" ng-controller="MainCtrl">
+		<section>
+			 <div id = "title"><b>Enter your party's address here:</b></div><br>
+			<form name="addressForm" ng-submit=''>
+	  	<input type='text' ng-model='address' placeholder = "address" id = "address">
+      <br>
+      <form name="cityForm">
+      <input type='text' ng-model='city' placeholder = "city" id = "city">
+      <br>
+      <form name="addressForm" ng-submit=''>
+      <input type='text' ng-model='state' placeholder = "state" id = "state">
+      <br>
+      <form name="zipForm">
+      <input type='text' ng-model='zip' placeholder = "zip" id = "zip">
+      <br>
+	  	<button ng-click = "addMarker(address, state, city); getRoute(address, state, city)">Search Map</button>
+	  	</form><div>
+
+	  	<b>Enter your party's date:</b>
+      <br><br>
+			<form name="addressForm" ng-submit='addDate()'>
+	  	<input type='date' ng-model='date'>
+	  	<input type='time' ng-model='time'>
+	  	<button>Submit</button>
+			</form>
+			<h1>Party</h1>
+			<div class="info-container">
+				<span class="info-header">When</span>
+				<span class="info when">{{ date | date : format : timezone}} at {{time | date: 'hh:mm:ss'}}</span>
+			</div>
+			<div class="info-container">
+				<span class="info-header">Where</span>
+				<span class="info where">{{address}} , {{city}} , {{state}} , {{zip}}</span>
+			</div>
+      <br>
+			<div>
+	    <div ng-app="app" id="wrapper">
+        <div class="angular-google-map-container" >
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" events="map.events" control="googlemap">
+                <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()">
+                  <div>Hello</div>
+                </ui-gmap-window>
+                
+                <ui-gmap-markers models="markers" idkey="markers.id" coords="'coords'" click="'onClick'" events="markers.events"></ui-gmap-markers>
+            </ui-gmap-google-map>
+      </div>
+    </div>
+    </div>
+    <br>
+			<a href="#" id = "requestTime" ng-model = "time">
+				<div class="button"> 
+					<p id="time">ESTIMATING TIME</p>
+				</div>
+			</a>
+
+			<a href="#">
+				<div class="button"> 
+					<p id="ride">REQUEST A RIDE</p>
+				</div>
+			</a>
+      <br>
+      <a hidden> Available Uber: </a>
+      <br>
+      <a hidden>
+        <div class="button"> 
+          <p id="uber1"></p>
+        </div>
+      </a>
+
+      <a hidden>
+        <div class="button"> 
+          <p id="uber2"></p>
+        </div>
+      </a>
+
+      <a hidden>
+        <div class="button"> 
+          <p id="uber3"></p>
+        </div>
+      </a>
+
+      <a hidden>
+        <div class="button"> 
+          <p id="uber4"></p>
+        </div>
+      </a>
+
+      <a hidden>
+        <div class="button"> 
+          <p id="uber5"></p>
+        </div>
+      </a>
+
+		</section>
+	</body>
+</html>
